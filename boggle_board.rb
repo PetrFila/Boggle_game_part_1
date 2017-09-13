@@ -18,27 +18,31 @@ class BoggleBoard
     # #call the shake! method BoggleBoard class
     #  puts output_string
     # #could use MAP
+
     @grid.map! do |space|
       space = @alphabet.shuffle.take(1)
+
     end
+
   end
 
   # Defining to_s on an object controls how the object is
   # represented as a string, e.g., when you pass it to puts
   def to_s
     #a new string for the output
-    output_string = String.new
+    output_string = ""
     #making a variable to mess with so I don't screw up my instance variable
-    letter_array = @grid
-    #how so i put them in 4 lines tho?
+    @alphabet.delete("Q")
+    @alphabet.push("Qu")
     4.times do
-      output_string << letter_array.shift(4).join(" ") + "\n"
+      output_string << @alphabet.shuffle[0..25].shift(4).join(" ") + "\n"
     end
 
+    # output_string = output_string + @alphabet[4..7].join(" ") + "\n"
     #print the output
     puts output_string
   end
 end
 game = BoggleBoard.new
-# puts game.to_s
-puts game.shake!
+puts game.to_s
+# puts game.shake!
