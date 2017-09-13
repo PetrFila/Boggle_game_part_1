@@ -4,27 +4,57 @@ class BoggleBoard
     #Creating an array of 16 underscores
     @grid = Array.new(16, "_")
     @alphabet = ("A".."Z").to_a
+    @dice = [
+      "AAEEGN",
+      "ELRTTY",
+      "AOOTTW",
+      "ABBJOO",
+      "EHRTVW",
+      "CIMOTU",
+      "DISTTY",
+      "EIOSST",
+      "DELRVY",
+      "ACHOPS",
+      "HIMNQU",
+      "EEINSU",
+      "EEGHNW",
+      "AFFKPS",
+      "HLNNRZ",
+      "DEILRX" ]
   end
 
   def shake!
-    # #take spaces
-    # output_string = String.new
-    # #REPLACE them with random letters (create a variable for this)
-    # alphabet_to_mess_up = @alphabet
-    # #spit it into our board
-    # 4.times do
-    #   output_string << alphabet_to_mess_up.sort_by {rand}.shift(4).join(" ") + ("\n")
-    # end
-    # #call the shake! method BoggleBoard class
-    #  puts output_string
-    # #could use MAP
+      # #take spaces
+      # output_string = String.new
+      # #REPLACE them with random letters (create a variable for this)
+      # alphabet_to_mess_up = @alphabet
+      # #spit it into our board
+      # 4.times do
+      #   output_string << alphabet_to_mess_up.sort_by {rand}.shift(4).join(" ") + ("\n")
+      # end
+      # #call the shake! method BoggleBoard class
+      #  puts output_string
+      # #could use MAP
 
-    @grid.map! do |space|
-      space = @alphabet.shuffle.take(1)
-
-    end
-
+      # @grid.map! do |space|
+      #   space = @alphabet.shuffle.take(1)
+      dice_var = ""
+      output = []
+      face_up_dice = []
+      @dice.each do |i|
+        output << i.split(//)
+      end
+      #  output[0].shuffle
+      for j in 0..15 do
+        face_up_dice<<output[j].sample
+      end
+      4.times do
+        dice_var << face_up_dice.shift(4).join(" ") + "\n"
+      end
+      dice_var
   end
+
+
 
   # Defining to_s on an object controls how the object is
   # represented as a string, e.g., when you pass it to puts
@@ -32,10 +62,10 @@ class BoggleBoard
     #a new string for the output
     output_string = ""
     #making a variable to mess with so I don't screw up my instance variable
-    @alphabet.delete("Q")
-    @alphabet.push("Qu")
+    # @alphabet.delete("Q")
+    # @alphabet.push("Qu")
     4.times do
-      output_string << @alphabet.shuffle[0..25].shift(4).join(" ") + "\n"
+      output_string << @dice.shuffle[0..25].shift(4).join(" ") + "\n"
     end
 
     # output_string = output_string + @alphabet[4..7].join(" ") + "\n"
@@ -44,5 +74,5 @@ class BoggleBoard
   end
 end
 game = BoggleBoard.new
-puts game.to_s
-# puts game.shake!
+# puts game.to_s
+puts game.shake!
