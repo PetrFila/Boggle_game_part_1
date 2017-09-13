@@ -50,6 +50,7 @@ class BoggleBoard
       end
       4.times do
         dice_var << face_up_dice.shift(4).join(" ") + "\n"
+        dice_var = dice_var.map {|s| s.gsub(/Q/, 'Qu')}
       end
       dice_var
   end
