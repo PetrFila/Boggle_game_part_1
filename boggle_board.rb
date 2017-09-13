@@ -47,10 +47,15 @@ class BoggleBoard
       #  output[0].shuffle
       for j in 0..15 do
         face_up_dice<<output[j].sample
+        face_up_dice.each do |x|
+          if x == "Q"
+            face_up_dice = face_up_dice.map! {|x| x.gsub(/Q/, 'Qu')}
+          end
+        end
       end
       4.times do
         dice_var << face_up_dice.shift(4).join(" ") + "\n"
-        dice_var = dice_var.map {|s| s.gsub(/Q/, 'Qu')}
+        # dice_var = dice_var.map {|s| s.gsub(/Q/, 'Qu')}
       end
       dice_var
   end
