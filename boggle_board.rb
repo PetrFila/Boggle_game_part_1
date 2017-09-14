@@ -38,24 +38,19 @@ class BoggleBoard
 
       # @grid.map! do |space|
       #   space = @alphabet.shuffle.take(1)
-      dice_var = ""
+
       output = []
       face_up_dice = []
-      @dice.each do |i|
-        output << i.split(//)
+      dice_var = ""
+
+      for i in 0..15 do
+        output << @dice[i].split(//)
+        face_up_dice<<output[i].sample
       end
-      #  output[0].shuffle
-      for j in 0..15 do
-        face_up_dice<<output[j].sample
-        face_up_dice.each do |x|
-          if x == "Q"
-            face_up_dice = face_up_dice.map! {|x| x.gsub(/Q/, 'Qu')}
-          end
-        end
-      end
+      face_up_dice = face_up_dice.map! {|x| x.gsub(/Q/, 'Qu')}
+
       4.times do
-        dice_var << face_up_dice.shift(4).join(" ") + "\n"
-        # dice_var = dice_var.map {|s| s.gsub(/Q/, 'Qu')}
+        dice_var << face_up_dice.shift(4).join("  ") + "\n"
       end
       dice_var
   end
